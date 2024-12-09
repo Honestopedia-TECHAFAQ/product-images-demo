@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Box Office App Showcase</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8fafc;
+      color: #333;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #0087ff;
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .event-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card-content h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      color: #0087ff;
+    }
+
+    .card-content p {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .cta {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .cta button {
+      background-color: #0087ff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .cta button:hover {
+      background-color: #0066cc;
+    }
+
+    .three-container {
+      margin: 20px auto;
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>Showcase Your Event With Ease!</h1>
+    <p>Discover how our Box Office App helps you accept payments effortlessly.</p>
+  </header>
+  <main class="container">
+    <div class="three-container" id="three-container"></div>
+    <section class="event-cards">
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200?text=Sausage+Sizzle" alt="Sausage Sizzle">
+        <div class="card-content">
+          <h2>Sausage Sizzle</h2>
+          <p>Turn your phone into a terminal and collect payments for delicious snacks!</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200?text=Bake+Sale" alt="Bake Sale">
+        <div class="card-content">
+          <h2>Bake Sale</h2>
+          <p>Sell baked goods and collect payments seamlessly with tap-to-pay.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200?text=Ticket+Sales" alt="Ticket Sales">
+        <div class="card-content">
+          <h2>Ticket Sales</h2>
+          <p>Sell tickets on the spot for your events with our Box Office App.</p>
+        </div>
+      </div>
+    </section>
+    <div class="cta">
+      <button>Try the Box Office App Today</button>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    const container = document.getElementById('three-container');
+    renderer.setSize(window.innerWidth * 0.8, 400);
+    container.appendChild(renderer.domElement);
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshStandardMaterial({ color: 0x0087ff });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    camera.position.z = 5;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    document.querySelector('button').addEventListener('click', () => {
+      alert('Redirecting to TryBooking...');
+    });
+  </script>
+</body>
+</html>
